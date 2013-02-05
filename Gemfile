@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-
 gem 'pg', '0.12.2'
 
 group :development, :test do
@@ -22,7 +21,7 @@ group :test do
 end
 
 group :production do
-  #gem 'unicorn'
+  gem 'unicorn'
   #gem 'newrelic-rpm'
 end
 
@@ -33,4 +32,4 @@ group :assets do
 end
 
 gem 'jquery-rails', '2.0.2'
-
+gem 'formtastic'

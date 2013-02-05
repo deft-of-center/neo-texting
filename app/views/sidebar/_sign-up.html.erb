@@ -2,4 +2,15 @@
   <header>
     <h1>Sign Up!</h1>
   </header>
+  <%= semantic_form_for User.new do |f| %>
+    <%= f.inputs do %>
+      <%= f.input :full_name, label: "Full name" %>
+      <%= f.input :email, label: "Email" %>
+      <%= f.input :username, label: "Username" %>
+      <%= f.input :password, label: "Password" %>
+    <% end %>
+    <%= f.actions do %>
+      <% f.action :submit %>
+    <% end %>
+  <% end %>
 </section>
