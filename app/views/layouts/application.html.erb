@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Texts</title>
+  <title>Texts: bring sms to your desktop</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="wrapper">
+    <%= render 'layouts/header' %>
+    <div id="container">
+      <section id="sidebar">
+        <%= yield :sidebar %>
+      </section>
+      <section id="content">
+        <%= yield %>
+      </section>
+    </div>
+    <%= render 'layouts/footer' %>
+  </div>
 </body>
 </html>

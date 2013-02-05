@@ -1,0 +1,20 @@
+<header id="page_header" role="banner">
+  <nav id="utility">
+    <p>
+    <% if false %>
+      Welcome <strong>Valentina</strong>
+      <%= link_to "[Your Page]", "#" %> |
+      <%= link_to "[Logout]", "#" %>
+    <% else %>
+      <%= link_to "[Login]" %>
+    <% end %>
+      <%= link_to "About Us", "/about-us" %>
+    </p>
+  </nav>
+  <%= link_to(
+        image_tag("logo.png",
+                  alt: "Texts: bring sms to your desktop",
+                  id: "logo"),
+        root_url,
+        title: "Texts: bring sms to your desktop") %>
+</header>
