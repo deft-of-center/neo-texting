@@ -1,4 +1,9 @@
 Texts::Application.routes.draw do
+
+  root to: "pages#index"
+
+  match '/:pages' => "pages#show", page: /about-us/
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
