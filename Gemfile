@@ -16,6 +16,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'capybara', '1.1.2'
   gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'

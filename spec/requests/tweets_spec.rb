@@ -1,11 +1,16 @@
 require 'spec_helper'
 
-describe "Texts" do
+describe "Tweets" do
   
   describe "Home page" do
 
-    it "should display recent texts"
-    # load factory of texts and check for them on home page
+    it "should display recent tweets" do
+      pending
+      tweet = FactoryGirl.create(:tweet)
+      visit '/'
+      page.should have_selector('li', text: tweet.content)
+    end
+    # load factory of tweets and check for them on home page
     
     describe "when User is logged in" do
 
@@ -43,6 +48,9 @@ describe "Texts" do
         it "should take user to his user page" do
           current_path.should == user_path(User.last)
         end
+        it "should display a welcome meassage" do
+          page.should have_content("Welcome to neotext")
+        end
       end
       it "should have login box"
       describe "and when user logs in" do
@@ -60,7 +68,7 @@ describe "Texts" do
 
   describe "User page" do
 
-    it "should display recent texts of user"
+    it "should display recent tweets of user"
     it "should display current profile info"
 
     describe "when User is logged in" do
@@ -71,7 +79,7 @@ describe "Texts" do
         it "should display a goodbye page"
       end
       describe "and user is on own page" do
-        it "should have an add new text box"
+        it "should have an add new tweet box"
         it "should have a link to edit profile info"
         describe "when user clicks edit" do
           it "should load prefilled edit form"
@@ -88,7 +96,7 @@ describe "Texts" do
       it "should have sign up box"
       it "should have login box"
       it "should not have a link to edit profile info"
-      it "should not have an add new text box"
+      it "should not have an add new tweet box"
       describe "and when user logs in" do
         it "should validate login credentials"
         describe "with invalid credentials" do
