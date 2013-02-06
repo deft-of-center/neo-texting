@@ -8,9 +8,10 @@
       <%= f.input :email, label: "Email" %>
       <%= f.input :username, label: "Username" %>
       <%= f.input :password, label: "Password" %>
+      <%= f.input :password_confirmation, label: "Password Confirmation" %>
     <% end %>
     <%= f.actions do %>
-      <% f.action :submit %>
+      <% f.action :submit, label: "Submit" %>
     <% end %>
   <% end %>
 </section>

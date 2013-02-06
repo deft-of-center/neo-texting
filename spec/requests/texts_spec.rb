@@ -26,10 +26,23 @@ describe "Texts" do
         visit '/'
         page.should have_selector('h1', text: "Sign Up!")
         page.should have_field('Full name')
+        page.should have_field('Email')
+        page.should have_field('Password')
+        page.should have_field('Password Confirmation')
       end
       describe "and when a user signs up" do
-        it "should take user to his user page"
-        it "should display a welcome message"
+        before {
+          visit '/'
+          fill_in('Full name', with: 'Dan')
+          fill_in('Email', with: 'dan@example.com')
+          fill_in('Username', with: 'danimal')
+          fill_in('Password', with: 'password1')
+          fill_in('Password Confirmation', with: 'password1')
+          click_button('Submit')
+        }
+        it "should take user to his user page" do
+          current_path.should == user_path(User.last)
+        end
       end
       it "should have login box"
       describe "and when user logs in" do

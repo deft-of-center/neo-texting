@@ -1,0 +1,63 @@
+@import "semanticgs";
+
+body {
+  background: rgba(202,195,149,0.25);
+}
+
+div#wrapper {
+  width: $total-width;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 0 50px -5px rgba(202,195,149,1);
+}
+
+div#container {
+  @include clearfix();
+  margin: 10px 0;
+	color: #6C5833;
+	font-size: large;
+	font-style: normal;
+	font-weight: bold;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+section#content {
+  @include column(12);
+  float: right;
+}
+
+section#sidebar {
+  @include column(0);
+  float: left;
+}
+
+header#page_header {
+  @include clearfix();
+  color: #333;
+  overflow: hidden;
+  padding: 0 10px 10px;
+  position: relative;
+
+  a,
+  a:link,
+  a:hover,
+  a:active,
+  a:visited {
+    color: blue;
+    text-decoration:none;
+  }
+
+  nav#utility {
+    position: absolute;
+    float: right;
+    margin-right: 20px;
+    font-size: 0.8em;
+    background-color: #bbb;
+    padding: 0 15px 5px 15px;
+  }
+
+  #logo {
+    margin-top: 5px;
+    height: 78px;
+  }
+}
