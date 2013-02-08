@@ -13,6 +13,7 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'thin'
   gem 'rack-livereload'
+  gem 'pry'
 end
 
 group :test do

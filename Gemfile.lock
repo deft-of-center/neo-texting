@@ -209,6 +209,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   libnotify (= 0.5.9)
   pg (= 0.12.2)
+  pry
   rack-livereload
   rails (= 3.2.11)
   rb-inotify (= 0.8.8)
