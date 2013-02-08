@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-
+<h1>User Info</h1>
+<ul>
+  <li>Name: <%= @user.full_name %></li>
+  <li>Username:<%= @user.username %></li>
+  <li>Email: <%= @user.email %></li>
+</ul>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
