@@ -26,8 +26,12 @@ section#content {
   float: right;
 }
 
-section#sidebar {
-  @include column(0);
+section#main-sidebar {
+  @include column(4);
+  float: left;
+}
+section#main-sidebar {
+  @include column(8);
   float: left;
 }
 
@@ -47,13 +51,26 @@ header#page_header {
     text-decoration:none;
   }
 
-  nav#utility {
-    position: absolute;
+  nav {
     float: right;
-    margin-right: 20px;
-    font-size: 0.8em;
+    margin-right: 40px;
+    font-size: 1.0em;
     background-color: #bbb;
-    padding: 0 15px 5px 15px;
+    padding: 15px;
+    li {
+      display: inline-block;
+      border-right: 2px solid #bd5;
+      margin-left: 15px;
+      padding-right: 15px;
+      line-height: .7em;
+      a, a:link, a:visited {
+        color: #666;
+        text-decoration: none;
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
   }
 
   #logo {

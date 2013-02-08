@@ -10,9 +10,9 @@
   <div id="wrapper">
     <%= render 'layouts/header' %>
     <div id="container">
-      <section id="sidebar">
-        <%= yield :sidebar %>
-      </section>
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash#{name}" %>
+      <% end %>
       <section id="content">
         <%= yield %>
       </section>
