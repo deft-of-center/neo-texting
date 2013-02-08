@@ -3,7 +3,10 @@ Texts::Application.routes.draw do
   root to: "pages#index"
 
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
+  match '/signin' => "sessions#new"
+  match '/signout' => "sessions#destroy"
   match '/about-us' => "pages#show", page: 'about-us'
 
 

@@ -1,15 +1,15 @@
 <header id="page_header" role="banner">
-  <nav id="utility">
-    <p>
-    <% if false %>
-      Welcome <strong>Valentina</strong>
-      <%= link_to "[Your Page]", "#" %> |
-      <%= link_to "[Logout]", "#" %>
+  <nav>
+    <ul>
+    <% if signed_in? %>
+      <li>Welcome <strong><%= current_user.full_name %></strong></li>
+      <li><%= link_to "Profile", current_user %></li>
+      <li><%= link_to "Logout", "/signout" %></li>
     <% else %>
-      <%= link_to "[Login]" %>
+      <li><%= link_to "Login", "/signin" %></li>
     <% end %>
-      <%= link_to "About Us", "/about-us" %>
-    </p>
+      <li><%= link_to "About Us", "/about-us" %></li>
+    </ul>
   </nav>
   <%= link_to(
         image_tag("logo.png",

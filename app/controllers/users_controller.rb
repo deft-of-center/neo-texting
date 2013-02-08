@@ -44,7 +44,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Welcome to neotext!' }
+        format.html { 
+          sign_in @user
+          redirect_to @user, notice: 'Welcome to neotext!' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }

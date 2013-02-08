@@ -3,6 +3,11 @@ require 'spec_helper'
 describe "Tweets" do
   
   describe "Home page" do
+    
+    subject { page }
+    before do
+      visit '/'
+    end
 
     it "should display recent tweets" do
       pending
@@ -13,54 +18,86 @@ describe "Tweets" do
     # load factory of tweets and check for them on home page
     
     describe "when User is logged in" do
+      let( :jon ) { FactoryGirl.create( :jon ) }
+      before {
+        fill_in('session_email', with: jon.email)
+        fill_in('session_password', with: jon.password)
+        click_button('Login')
+      }
 
-      it "should have logout link" do
-        pending
-        visit '/'
-        page.should have_selector('a', text: "Logout")
-      end
+      it { should have_link('Logout', href: signout_path ) }
+      it { should have_link('Profile', href: user_path( jon ) ) }
+      it { should_not have_link( "Login", href: signin_path ) }
+      it { should_not have_content( "Login:" ) }
+      it { should_not have_content( "Sign up!" ) }
+      
       describe "when user clicks logout link" do
-        it "should logout user"
-        it "should display a goodbye page"
+        before { click_link "Logout" }
+        it { should have_link "Login" }
+        it { should have_content "Come back soon!" }
       end
     end
 
     describe "when User is logged out" do
-
       it "should have sign up box" do
-        visit '/'
-        page.should have_selector('h1', text: "Sign Up!")
-        page.should have_field('Full name')
-        page.should have_field('Email')
-        page.should have_field('Password')
-        page.should have_field('Password Confirmation')
+        should have_selector('h1', text: "Sign Up!")
+        should have_field('Full name')
+        should have_field('Email')
+        should have_field('Password')
+        should have_field('Password confirmation')
       end
       describe "and when a user signs up" do
-        before {
-          visit '/'
-          fill_in('Full name', with: 'Dan')
-          fill_in('Email', with: 'dan@example.com')
-          fill_in('Username', with: 'danimal')
-          fill_in('Password', with: 'password1')
-          fill_in('Password Confirmation', with: 'password1')
-          click_button('Submit')
-        }
-        it "should take user to his user page" do
-          current_path.should == user_path(User.last)
-        end
-        it "should display a welcome meassage" do
-          page.should have_content("Welcome to neotext")
+        let( :jon ) { FactoryGirl.build( :jon ) }
+        describe "with valid fields" do
+          before {
+            fill_in('user_full_name', with: jon.full_name )
+            fill_in('user_email', with: jon.email )
+            fill_in('user_username', with: jon.username )
+            fill_in('user_password', with: jon.password )
+            fill_in('user_password_confirmation', with: jon.password )
+            click_button('Submit')
+          }
+          it "should take user to his user page" do
+            current_path.should == user_path(User.last)
+          end
+          it { should have_content("Welcome to neotext") }
+          it "should login user" do
+            should have_content( "Welcome #{jon.full_name}")
+          end
         end
       end
-      it "should have login box"
+      it "should have login box" do
+        should have_selector('h1', text: "Login:")
+        should have_field('Email')
+        should have_field('Password')
+      end
       describe "and when user logs in" do
-        it "should validate login credentials"
+        let(:jon) { FactoryGirl.create( :jon )  }
+        describe "with no credentials" do
+          before {
+            click_button('Login')
+          }
+          it "should display error message" do
+            should have_content('Invalid email or password')
+          end
+        end
         describe "with invalid credentials" do
-          it "should display error message"
+          before {
+            fill_in('session_email', with: 'dan@example.com')
+            fill_in('session_password', with: 'wrongPassword')
+            click_button('Login')
+          }
+          it "should display error message" do
+            should have_content('Invalid email or password')
+          end
         end
         describe "with valid credentials" do
-          it "should display welcome messgae"
-          it "should jump to user page"
+          it "should have Welcome upon login" do
+            fill_in('session_email', with: jon.email)
+            fill_in('session_password', with: jon.password)
+            click_button('Login')
+            should have_content("Welcome #{jon.full_name}")
+          end
         end
       end
     end

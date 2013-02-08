@@ -2,16 +2,18 @@
   <header>
     <h1>Sign Up!</h1>
   </header>
-  <%= semantic_form_for User.new do |f| %>
-    <%= f.inputs do %>
-      <%= f.input :full_name, label: "Full name" %>
-      <%= f.input :email, label: "Email" %>
-      <%= f.input :username, label: "Username" %>
-      <%= f.input :password, label: "Password" %>
-      <%= f.input :password_confirmation, label: "Password Confirmation" %>
-    <% end %>
-    <%= f.actions do %>
-      <% f.action :submit, label: "Submit" %>
-    <% end %>
+  <%= form_for User.new do |f| %>
+    <p><%= f.label :full_name %><br />
+    <%= f.text_field :full_name %> </p>
+    <p><%=  f.label :email %><br /> 
+    <%= f.email_field :email %></p>
+    <p><%=  f.label :username %><br />
+    <%= f.text_field :username %></p> 
+    <p><%=  f.label :password %><br />
+    <%= f.password_field :password %> </p> 
+    <p><%=  f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>  </p>
+    <p class="button">
+    <%= submit_tag "Submit" %></p>
   <% end %>
 </section>
