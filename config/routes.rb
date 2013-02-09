@@ -1,5 +1,8 @@
 Texts::Application.routes.draw do
 
+  resources :tweets
+
+
   root to: "pages#index"
 
   resources :users
