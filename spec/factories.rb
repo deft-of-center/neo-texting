@@ -1,29 +1,31 @@
-FactoryGirl.define do
-  factory :jon, class: User do
-    full_name "Jon Doe"
-    username "jdoe"
-    email "jdoe@example.com"
-    password "foobar"
-    password_confirmation "foobar"
-  end
-  factory :jane, class: User do
-    full_name "Jane Doe"
-    username "jandoe"
-    email "jandoe@example.com"
-    password "foobar"
-    password_confirmation "foobar"
-  end
-  factory :bill, class: User do
-    full_name "Bill Doe"
-    username "bdoe"
-    email "bdoe@example.com"
-    password "foobar"
-    password_confirmation "foobar"
-  end
+require 'faker'
 
-  sequence(:random_string){ |n| LoremIpsum.generate }
+FactoryGirl.define do
+  factory :user do
+    full_name { Faker::Name.name }
+    email { Faker::Internet.email(full_name)  }
+    sequence(:username) { |n| "#{Faker::Lorem.word}#{n}" }
+    password "foobar"
+    password_confirmation "foobar"
+
+    factory :jon do
+      full_name "Jon Doe"
+      username "jdoe"
+      email "jdoe@neotexting.com"
+    end
+    factory :jane do
+      full_name "Jane Doe"
+      username "janedoe"
+      email "janedoe@neotexting.com"
+    end
+    factory :bill do
+      full_name "Bill Doe"
+      username "bdoe"
+      email "bdoe@neotexting.com"
+    end
+  end
   factory :tweet do
-    joe
-    tweet { generate(:random_string)} 
+    content { Faker::Company.bs }
+    user
   end
 end

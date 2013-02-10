@@ -14,6 +14,7 @@ group :development, :test do
   gem 'thin'
   gem 'rack-livereload'
   gem 'pry'
+  gem 'faker'
 end
 
 group :test do
