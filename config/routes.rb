@@ -2,12 +2,12 @@ Texts::Application.routes.draw do
 
   resources :tweets
 
-
-  root to: "pages#index"
+  root to: "users#index"
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
+  match '/signup' => "users#new"
   match '/signin' => "sessions#new"
   match '/signout' => "sessions#destroy"
   match '/about-us' => "pages#show", page: 'about-us'
