@@ -24,8 +24,4 @@ FactoryGirl.define do
       email "bdoe@neotexting.com"
     end
   end
-  factory :tweet do
-    content { Faker::Company.bs }
-    user
-  end
 end
