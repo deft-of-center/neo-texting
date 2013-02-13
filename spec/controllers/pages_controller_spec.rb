@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe PagesController do
 
-  describe "GET 'index'" do
+  describe "GET 'about-us'" do
     it "returns http success" do
-      get 'index'
+      visit "/about-us"
       response.should be_success
     end
   end

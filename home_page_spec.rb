@@ -1,9 +1,8 @@
 require 'spec_helper'
 
-describe "Tweets" do
+describe "Neotexting" do
   
   describe "Home page" do
-    
     subject { page }
     before do
       visit '/'
@@ -94,5 +93,4 @@ describe "Tweets" do
       end
     end
   end
-
 end
