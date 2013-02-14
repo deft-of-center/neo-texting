@@ -4,9 +4,18 @@ describe "Users" do
 
   describe "when logged out do" do
     describe "a user's profile page" do
+      let (:user) { FactoryGirl.create(:user) }
+      before do
+        visit "/users/#{user.id}"
+      end
       it "has recent tweets by user"
-      it "has link to user's followers"
-      it "has link to whom user is following"
+      it "has link to user's followers" do
+        page.should have_link( 'Followers' )
+      end
+      it "has link to whom user is following" do
+        page.should have_link( 'Following' )
+      end
+      it "has link to favorite tweets" 
     end
   end
   describe "when logged in" do

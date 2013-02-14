@@ -15,7 +15,14 @@ describe User do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
-  it { should respond_to(:authenticate)}
+  it { should respond_to(:authenticate) }
+  it { should respond_to(:relationships) }
+  it { should respond_to(:followers)}
+  it { should respond_to(:reverse_relationships)}
+  it { should respond_to(:followed_users)}
+  it { should respond_to(:follow) }
+  it { should respond_to(:unfollow) }
+  it { should respond_to(:following?) }
 
   it { should be_valid }
   describe "when name is not present" do
@@ -97,6 +104,42 @@ describe User do
   describe "remember_token" do
     before {@user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "followed" do
+    before do
+      @user.save
+      @user2.save
+      @user2.follow(@user)
+    end
+    it "include other user in followers" do
+      @user.followers.should include(@user2)
+    end
+    describe "then unfollowed" do
+      before { @user2.unfollow(@user) }
+      it "no longer include the other user in followers" do
+        @user.followers.should_not include(@user2)
+      end
+    end
+  end
+  describe "followed users" do
+    before do
+      @user.save
+      @user2.save
+    end
+    describe "when followed" do
+      before { @user.follow(@user2) }
+      it "are included in followed users" do
+        @user.followed_users.should include(@user2)
+        @user.following?(@user2).should be_true
+      end
+      describe "then unfollowed" do
+        before { @user.unfollow(@user2) }
+        it "are no longer included in followed users" do
+          @user.followed_users.should_not include(@user2)
+        end
+      end
+    end
   end
 end
 

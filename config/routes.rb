@@ -4,7 +4,12 @@ Texts::Application.routes.draw do
 
   root to: "users#index"
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup' => "users#new"
