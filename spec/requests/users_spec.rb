@@ -15,7 +15,7 @@ describe "Users" do
       it "has link to whom user is following" do
         page.should have_link( 'Following' )
       end
-      it "has link to favorite tweets" 
+      it "has link to favorite tweets"
     end
   end
   describe "when logged in" do
@@ -28,7 +28,7 @@ describe "Users" do
       pending
       should have_selector('p', text: tweet.content)
     end
-    
+
     it "should display current profile info"
 
     describe "when User is logged in" do
@@ -50,7 +50,7 @@ describe "Users" do
         end
       end
     end
-    
+
     describe "when User is logged out" do
 
       it "should have sign up box"

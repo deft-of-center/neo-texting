@@ -60,7 +60,7 @@ describe User do
   end
   describe "when username address is already taken" do
     before do
-      @user2.username = @user.username 
+      @user2.username = @user.username
       @user2.save
     end
     it { should_not be_valid}
@@ -76,7 +76,7 @@ describe User do
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch" }
     it { should_not be_valid}
-  end 
+  end
   describe "when password is nil" do
     before { @user.password_confirmation = nil }
     it { should_not be_valid}
