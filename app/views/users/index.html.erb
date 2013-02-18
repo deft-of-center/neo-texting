@@ -1,8 +1,4 @@
-<section id="main-sidebar">
-<% unless signed_in? %>
-  <%= render partial: 'sidebar/signup' %>
-  <%= render partial: 'sidebar/login' %>
-<% end %>
-</section>
-<section id="main-content">
-</section>
+<h1>Users</h1>
+<ul>
+<%= render @users %>
+</ul>

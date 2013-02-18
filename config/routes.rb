@@ -1,8 +1,6 @@
 Texts::Application.routes.draw do
 
-  resources :tweets
-
-  root to: "users#index"
+  root to: "pages#home"
 
   resources :users do
     member do
@@ -10,7 +8,9 @@ Texts::Application.routes.draw do
     end
   end
 
+  resources :tweets, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 
   match '/signup' => "users#new"
   match '/signin' => "sessions#new"

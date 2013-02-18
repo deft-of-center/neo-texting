@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
     relationships.find_by_followed_id(followed_user.id).destroy
   end
 
+  def tweets_by_followed_users
+    followed_ids = followed_users.map { |f| f.id }
+    Tweet.where( "user_id IN (#{followed_ids.join(',')})")
+  end
+
   private
     
     def create_remember_token

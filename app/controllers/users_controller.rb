@@ -1,8 +1,18 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_filter :correct_user, only: [:edit, :update, :destroy]
+
+  before_filter :make_tweet_obj, only: [:index, :edit, :show, :following, :followers]
+
+  def correct_user
+    redirect_to users_path unless current_user == User.find(params[:id])
+  end
+
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    @tweet = current_user.tweets.build 
 
     respond_to do |format|
       format.html # index.html.erb
@@ -86,12 +96,14 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     @users = @user.followed_users
+    @title = "The Following"
     render 'show_follow'
   end
 
   def followers
     @user = User.find(params[:id])
     @users = @user.followers
+    @title = "The Followed"
     render 'show_follow'
   end
 

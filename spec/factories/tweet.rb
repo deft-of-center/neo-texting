@@ -1,8 +1,7 @@
-require 'faker'
 
 FactoryGirl.define do
   factory :tweet do
-    content { Faker::Company.bs }
-    user { FactoryGirl.create(:user) }
+    content { "A tree is like a person's character, it's shadow, their reputation"}
+    user
   end
 end

@@ -1,16 +1,20 @@
-<section id="main-sidebar">
-  <%= render partial: 'sidebar/user_nav' %>
-  <%= render partial: 'sidebar/footer' %>
-</section>
-<section id="main-content">
   <p id="notice"><%= notice %></p>
-
-  <h1>User Info</h1>
-  <ul>
-    <li>Name: <%= @user.full_name %></li>
-    <li>Username:<%= @user.username %></li>
-    <li>Email: <%= @user.email %></li>
-  </ul>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-  <%= link_to 'Back', users_path %>
+  <header>
+    <h1><%= @user.full_name %></h1>
+    <h2>Username: @<%= @user.username %></h2>
+    <h3><%= @user.tweets.first.content if @user.tweets.any? %></h3>
+  </header>
+  <section class="follow">
+  <%= render partial: 'follow_button', locals: { user: @user } %>
+  </section>
+  <section class="tweets">
+  <% if @user.tweets.any? %>
+    <h2>Tweets</h2>
+    <ol>
+      <%= render @user.tweets %>
+    </ol>
+  <% else %>
+    <h2>Shhhhh . . . I'm listening</h2>
+  <% end %>
+  </section>
 </section>

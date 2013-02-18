@@ -1,0 +1,14 @@
+<section id="profile">
+<h3><%= current_user.full_name %></h3>
+<ul>
+  <li><%= link_to "Tweets: #{current_user.tweets.count}", current_user %></li>
+  <li><%= link_to "Following: #{current_user.followed_users.count}", following_user_path(current_user) %></li>
+  <li><%= link_to "Followers: #{current_user.followers.count}", followers_user_path(current_user) %></li>
+</ul>
+</section>
+<section id="tweet">
+<%= form_for(@tweet) do |f| %>
+  <div> <%= f.text_area :content, size: "20x3" %> </div>
+  <%= f.submit "Tweet" %>
+<% end %>
+</section>

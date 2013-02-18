@@ -1,0 +1,12 @@
+<li>
+<table>
+  <tr>
+    <td><%= render :partial => 'follow_button', locals: {:user => user} %></td>
+    <td><%= link_to "#{user.full_name}" %></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td><%= link_to "T: #{user.tweets.count}", user %> - <%= link_to "F'ing: #{user.followed_users.count}", following_user_path(user) %> - <%= link_to "F'ed: #{user.followers.count}", followers_user_path(user) %></td>
+  </tr>
+</table>
+</li>
