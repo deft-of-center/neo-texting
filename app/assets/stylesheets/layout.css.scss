@@ -19,6 +19,12 @@ div#container {
 	font-style: normal;
 	font-weight: bold;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  li,ol {
+    list-style:none;
+    padding: 10px;
+    margin: 5px;
+    background: #ccc;
+  }
 }
 
 section#content {
@@ -27,20 +33,21 @@ section#content {
 }
 
 section#main-sidebar {
-  @include column(4);
+  @include column(3);
   float: left;
 }
-section#main-sidebar {
+section#main-content {
   @include column(8);
-  float: left;
+  float: right;
 }
 
 header#page_header {
   @include clearfix();
   color: #333;
+  background-color: #bbb;
   overflow: hidden;
-  padding: 0 10px 10px;
   position: relative;
+  margin: 0;
 
   a,
   a:link,
@@ -53,10 +60,9 @@ header#page_header {
 
   nav {
     float: right;
-    margin-right: 40px;
+    margin-right: 10px;
     font-size: 1.0em;
-    background-color: #bbb;
-    padding: 15px;
+    /*padding: 5px;*/
     li {
       display: inline-block;
       border-right: 2px solid #bd5;
@@ -74,7 +80,7 @@ header#page_header {
   }
 
   #logo {
-    margin-top: 5px;
-    height: 78px;
+    margin: 5px;
+    height: 40px;
   }
 }

@@ -14,7 +14,18 @@
         <%= content_tag :div, msg, id: "flash#{name}" %>
       <% end %>
       <section id="content">
-        <%= yield %>
+        <section id="main-sidebar">
+        <% if signed_in? %>
+          <%= render partial: 'sidebar/profile' %>
+        <% else %>
+          <%= render partial: 'sidebar/login' %>
+          <%= render partial: 'sidebar/signup' %>
+        <% end %>
+          <%= render partial: 'sidebar/footer' %>
+        </section>
+        <section id="main-content">
+          <%= yield %>
+        </section>
       </section>
     </div>
     <%= render 'layouts/footer' %>

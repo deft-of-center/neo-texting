@@ -1,4 +1,7 @@
 <header id="page_header" role="banner">
+  <%= image_tag("logo.png",
+                  alt: "Texts: bring sms to your desktop",
+                  id: "logo") %>
   <nav>
     <ul>
     <% if signed_in? %>
@@ -8,13 +11,8 @@
     <% else %>
       <li><%= link_to "Login", "/signin" %></li>
     <% end %>
+      <li><%= link_to "Home", "/" %></li>
       <li><%= link_to "About Us", "/about-us" %></li>
     </ul>
   </nav>
-  <%= link_to(
-        image_tag("logo.png",
-                  alt: "Texts: bring sms to your desktop",
-                  id: "logo"),
-        root_url,
-        title: "Texts: bring sms to your desktop") %>
 </header>
