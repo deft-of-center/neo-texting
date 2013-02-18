@@ -25,7 +25,7 @@ group :test do
 end
 
 group :production do
-  gem 'unicorn'
+  #gem 'unicorn'
   #gem 'newrelic-rpm'
 end
 
