@@ -28,7 +28,7 @@ end
 
 def make_tweets
   users = User.all
-  (Random.rand(3..34)).times do
+  (Random.rand(34)).times do
     users.each do |user|
       content = Quoth.get
       user.tweets.create(content: content)
