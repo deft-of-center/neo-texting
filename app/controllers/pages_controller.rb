@@ -1,10 +1,8 @@
 class PagesController < ApplicationController
-  before_filter :signed_in_user
-  before_filter :make_tweet_obj
-
 
   def home
     if signed_in?
+      @tweet = current_user.tweets.build
       @tweets = current_user.tweets_by_followed_users
     else
       @tweets = Tweet.recent_tweets

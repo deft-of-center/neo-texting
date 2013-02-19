@@ -2,8 +2,6 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
   before_filter :correct_user, only: [:edit, :update, :destroy]
 
-  before_filter :make_tweet_obj, only: [:index, :edit, :show, :following, :followers]
-
   def correct_user
     redirect_to users_path unless current_user == User.find(params[:id])
   end
@@ -24,6 +22,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @tweet = current_user.tweets.build
 
     respond_to do |format|
       format.html # show.html.erb
@@ -45,6 +44,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @tweet = current_user.tweets.build
   end
 
   # POST /users
@@ -96,6 +96,7 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     @users = @user.followed_users
+    @tweet = current_user.tweets.build
     @title = "The Following"
     render 'show_follow'
   end
@@ -103,6 +104,7 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @users = @user.followers
+    @tweet = current_user.tweets.build
     @title = "The Followed"
     render 'show_follow'
   end
