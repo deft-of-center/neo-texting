@@ -141,5 +141,15 @@ describe User do
       end
     end
   end
+
+  describe "tweets_by_followed_users" do
+    before do
+      @user.save
+    end
+
+    it "handles 0 followers with postgres" do
+      @user.tweets_by_followed_users.count.should == 0
+    end
+  end
 end
 
