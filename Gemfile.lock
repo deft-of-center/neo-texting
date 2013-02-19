@@ -110,6 +110,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    quoth (0.0.1)
+      nokogiri
     rack (1.4.4)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -207,6 +209,7 @@ DEPENDENCIES
   libnotify (= 0.5.9)
   pg (= 0.12.2)
   pry
+  quoth
   rack-livereload
   rails (= 3.2.11)
   rb-inotify (= 0.8.8)

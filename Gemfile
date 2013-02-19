@@ -6,6 +6,7 @@ gem 'bcrypt-ruby','3.0.1'
 gem 'thin'
 
 group :development, :test do
+  gem 'quoth'
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'

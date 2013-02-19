@@ -18,10 +18,10 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def following?(other_user)
-    relationships.find_by_followed_id(other_user.id)
+    relationships.find_by_followed_id(other_user.id) unless other_user.nil?
   end
   def follow(followed_user)
-    relationships.create(followed_id: followed_user.id)
+    relationships.create(followed_id: followed_user.id) unless following?(followed_user)
   end
 
   def unfollow(followed_user)

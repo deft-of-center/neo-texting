@@ -28,9 +28,9 @@ end
 
 def make_tweets
   users = User.all
-  (20).times do
+  (Random.rand(3..34)).times do
     users.each do |user|
-      content = Faker::Company.bs
+      content = Quoth.get
       user.tweets.create(content: content)
     end
   end
@@ -38,9 +38,9 @@ end
 
 def make_relationships
   users = User.all
-  first_user = users.first
-  followers = users[2..25]
-  users_followed = users[15..30]
-  followers.each { |follower| follower.follow(first_user) }
-  users_followed.each { |followed| first_user.follow(followed) }
+  users.each do |user|
+    (Random.rand(15)).times do
+      user.follow(users[(Random.rand(34))])
+    end
+  end
 end
