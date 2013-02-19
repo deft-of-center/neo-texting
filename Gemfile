@@ -4,9 +4,10 @@ gem 'rails', '3.2.11'
 gem 'pg', '0.12.2'
 gem 'bcrypt-ruby','3.0.1'
 gem 'thin'
+gem 'quoth'
+gem 'faker'
 
 group :development, :test do
-  gem 'quoth'
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'
@@ -15,7 +16,6 @@ group :development, :test do
   gem 'childprocess', '0.3.6'
   gem 'rack-livereload'
   gem 'pry'
-  gem 'faker'
 end
 
 group :test do
