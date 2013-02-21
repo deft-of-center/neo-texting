@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def tweets_by_followed_users
-    followed_ids = followed_users.map { |f| f.id }
+    followed_ids = followed_users.map { |f| f.id } << id
     Tweet.where( "user_id IN (#{followed_ids.join(',')})")
   end
 
