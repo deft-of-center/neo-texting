@@ -4,12 +4,12 @@ gem 'rails', '3.2.11'
 gem 'pg', '0.12.2'
 gem 'bcrypt-ruby','3.0.1'
 gem 'thin'
+gem 'quoth'
+gem 'faker'
 
 group :development, :test do
-  gem 'quoth'
   gem 'rspec-rails', '2.11.0'
   gem 'pry'
-  gem 'faker'
 end
 
 group :test do
