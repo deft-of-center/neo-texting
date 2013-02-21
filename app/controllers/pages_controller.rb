@@ -12,7 +12,9 @@ class PagesController < ApplicationController
   end
 
   def show
-    @tweet = current_user.tweets.build
+    if signed_in?
+      @tweet = current_user.tweets.build 
+    end
     render :action => params[:page]
   end
 
