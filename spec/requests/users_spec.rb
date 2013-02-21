@@ -29,6 +29,35 @@ describe "Users" do
     end
     
   end
+
+  describe "show" do
+
+    let!(:tweet) {user.tweets.create(content: "hello")}
+    let(:user2) { FactoryGirl.create(:user) }
+    let!(:tweet2) {user2.tweets.create(content: "hello2")}
+
+    describe "user is logged in" do
+
+      before(:each) do
+        sign_in(user)
+        visit user_path(user)
+      end
+      it "should let user delete own tweet" do
+        user.tweets.count.should == 1
+        click_link( "Delete Tweet" )
+        user.tweets.count.should == 0
+      end
+      it "should not show delete tweet link for other users tweet" do
+        visit user_path(user2)
+        page.should_not have_content("Delete Tweet")
+      end
+      
+    end
+    describe "user is not logged in" do
+      it "should not let user delete any tweet"
+    end
+  end
+
   describe "pages controller test" do
     describe "when user is logged in" do
       it "should have a tweet selection button" do

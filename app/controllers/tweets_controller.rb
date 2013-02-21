@@ -6,7 +6,10 @@ class TweetsController < ApplicationController
     redirect_to current_user
   end
   def destroy
-    Tweet.find(params[:id]).destroy
+    tweet = current_user.tweets.find_by_id(params[:id])
+    if tweet
+      tweet.destroy
+    end
     redirect_to current_user
   end
 end
