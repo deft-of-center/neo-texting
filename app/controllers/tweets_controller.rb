@@ -9,7 +9,9 @@ class TweetsController < ApplicationController
     tweet = current_user.tweets.find_by_id(params[:id])
     if tweet
       tweet.destroy
+      redirect_to current_user
+    else
+      render status: :forbidden
     end
-    redirect_to current_user
   end
 end
