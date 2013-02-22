@@ -3,7 +3,9 @@
     <h1><%= @user.full_name %></h1>
     <h2>Username: @<%= @user.username %></h2>
     <h3><%= @user.tweets.first.content if @user.tweets.any? %></h3>
+    <% if current_user?(@user) %>
     <h4><%= link_to "Edit Profile", edit_user_path(current_user) %>
+    <% end %>
   </header>
   <section class="follow">
   <%= render partial: 'follow_button', locals: { user: @user } %>
