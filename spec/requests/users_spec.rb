@@ -57,7 +57,10 @@ describe "Users" do
       
     end
     describe "user is not logged in" do
-      it "should not let user delete any tweet"
+      it "should not let user delete any tweet" do
+        visit user_path(user)
+        page.should_not have_content("Delete Tweet")
+      end
     end
   end
 
