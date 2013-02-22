@@ -67,6 +67,30 @@ describe "Users" do
     end
   end
 
+  describe "edit" do
+
+    describe "user is logged in" do
+
+      before(:each) do
+        sign_in(user)
+        visit edit_user_path(user)
+      end
+
+      it "should let user edit own info without password" do
+        page.should have_content user.full_name
+        fill_in "Full name", with: "New Name"
+        click_button "Update User"
+        page.should have_content "New Name"
+      end
+      it "should let user edit own password" do
+        fill_in "Password", with: "foobar2"
+        fill_in "Password confirmation", with: "foobar2"
+        click_button "Update User"
+        page.should have_content "User was successfully updated."
+      end
+    end
+  end
+
   describe "pages controller test" do
     describe "when user is logged in" do
       it "should have a tweet selection button" do

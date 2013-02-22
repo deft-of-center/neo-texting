@@ -14,8 +14,9 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { within: 6..40 }, on: :create
+  validates :password, length: { within: 6..40 }, on: :update, unless: lambda{ |user| user.password.blank? }
+  validates :password_confirmation, presence: true, on: :create
 
   def following?(other_user)
     relationships.find_by_followed_id(other_user.id) unless other_user.nil?
@@ -34,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   private
-    
+
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
