@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
-  before_filter :correct_user, only: [:edit, :update, :destroy]
-
-  def correct_user
-    redirect_to users_path unless current_user == User.find(params[:id])
-  end
 
   def index
     @users = User.all
@@ -34,6 +29,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    redirect_to users_path if current_user.id != params[:id]
     @user = User.find(params[:id])
   end
 
@@ -54,6 +50,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    redirect_to user_paths if current_user.id != params[:id]
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -68,6 +65,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    redirect_to user_paths if current_user.id != params[:id]
     @user = User.find(params[:id])
     @user.destroy
 
