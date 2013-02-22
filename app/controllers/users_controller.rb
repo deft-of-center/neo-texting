@@ -6,11 +6,8 @@ class UsersController < ApplicationController
     redirect_to users_path unless current_user == User.find(params[:id])
   end
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
-    @tweet = current_user.tweets.build 
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,11 +15,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @tweet = current_user.tweets.build
 
     respond_to do |format|
       format.html # show.html.erb
@@ -30,8 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
 
@@ -41,14 +33,10 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    @tweet = current_user.tweets.build
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -65,8 +53,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
   def update
     @user = User.find(params[:id])
 
@@ -81,8 +67,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -96,7 +80,6 @@ class UsersController < ApplicationController
   def following
     @user = User.find(params[:id])
     @users = @user.followed_users
-    @tweet = current_user.tweets.build
     @title = "The Following"
     render 'show_follow'
   end
@@ -104,7 +87,6 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @users = @user.followers
-    @tweet = current_user.tweets.build
     @title = "The Followed"
     render 'show_follow'
   end

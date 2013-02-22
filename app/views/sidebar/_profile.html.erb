@@ -7,7 +7,7 @@
 </ul>
 </section>
 <section id="tweet">
-<%= form_for(@tweet) do |f| %>
+<%= form_for(current_user.tweets.build) do |f| %>
   <div> <%= f.text_area :content, size: "20x3" %> </div>
   <%= f.submit "Tweet" %>
 <% end %>
