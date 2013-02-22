@@ -51,6 +51,9 @@ describe "Users" do
         visit user_path(user2)
         page.should_not have_content("Delete Tweet")
       end
+      it "should have a link from profile to edit content" do
+        page.should have_link("Edit Profile")
+      end
       
     end
     describe "user is not logged in" do
