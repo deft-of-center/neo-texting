@@ -6,7 +6,7 @@
   <tr>
     <td style="color: #999; font-size: 8px;"><%= time_ago_in_words(tweet.created_at) %> ago</td>
   </tr>
-  <% if tweet.user == current_user %>
+  <% if current_user?(tweet.user)  %>
   <tr>
     <td><%= link_to 'Delete Tweet', tweet, method: :delete, confirm: "Are you sure?" %></td>
   </tr>
