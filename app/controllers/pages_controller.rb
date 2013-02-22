@@ -1,10 +1,14 @@
 class PagesController < ApplicationController
 
   def home
+    @origin = params[:origin]
+    @origin ||= "following"
     if signed_in?
-      params[:origin] ||= "following"
-      @tweets = params[:origin] == 'following' ? current_user.tweets_by_followed_users : Tweet.recent_tweets
-      @origin = params[:origin]
+      if @origin == "following"
+        @tweets = current_user.tweets_by_followed_users
+      else
+        @tweets = Tweet.recent_tweets
+      end
     else
       @tweets = Tweet.recent_tweets
     end

@@ -1,3 +1,8 @@
 <h1>Recent Tweets</h1>
-<%= select_tag "origin", "<option>From followed users</option><option>From all users</option>".html_safe if signed_in? %>
+<% if signed_in? %>
+  <%= form_tag("/", :method => "post") do %>
+    <%= select_tag(:origin, options_for_select([['From followed users','following'],['From Everyone','everyone']], @origin)) %>
+    <%= submit_tag("Select") %>
+  <% end %>
+<% end %>
 <%= render @tweets %>

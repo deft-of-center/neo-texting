@@ -9,5 +9,5 @@ class Tweet < ActiveRecord::Base
   def self.recent_tweets
     Tweet.limit(30)
   end
-  
+
 end
