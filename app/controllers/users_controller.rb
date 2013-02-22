@@ -29,8 +29,8 @@ class UsersController < ApplicationController
   end
 
   def edit
-    redirect_to users_path if current_user.id != params[:id]
     @user = User.find(params[:id])
+    legit_user?
   end
 
   def create
@@ -50,8 +50,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_to user_paths if current_user.id != params[:id]
     @user = User.find(params[:id])
+    legit_user?
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -65,8 +65,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    redirect_to user_paths if current_user.id != params[:id]
     @user = User.find(params[:id])
+    legit_user?
     @user.destroy
 
     respond_to do |format|
@@ -89,4 +89,11 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  private
+
+    def legit_user?
+      unless current_user ==  @user
+        redirect_to @user, notice: "Homey don't play that."
+      end
+    end
 end
